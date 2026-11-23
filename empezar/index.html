@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Empieza · Corte IA</title>
+<meta name="description" content="Calcula cuánto tiempo pasas editando y elige tu plan de Corte IA.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#F7F7F8">
+<link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/img/icon.png">
+<link rel="apple-touch-icon" href="/img/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<script src="/launch.js"></script>
+<script src="/analytics.js"></script>
+</head>
+<body class="fn-body">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="mark" viewBox="12 7 86 86"><path d="M72.98 27.02A32.5 32.5 0 1 0 72.98 72.98L63.79 63.79A19.5 19.5 0 1 1 63.79 36.21Z" fill="currentColor"/><path d="M88.15 33.75A32.5 32.5 0 0 1 88.15 66.25L75.56 58.98A18 18 0 0 0 75.56 41.02Z" fill="#E0457B"/></symbol>
+</svg>
+
+<div class="fn">
+  <header class="fn-top">
+    <a class="brand" href="/" aria-label="Corte IA, inicio"><svg class="mark" width="26" height="26" aria-hidden="true"><use href="#mark"/></svg><span>Corte <span class="ia">IA</span></span></a>
+    <div class="fn-progress">
+      <button type="button" class="fn-back" id="back" aria-label="Volver"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button>
+      <div class="fn-bars" id="bars" role="progressbar" aria-label="Progreso" aria-valuemin="1"></div>
+    </div>
+  </header>
+
+  <main class="fn-main" id="main">
+    <section class="fn-step" data-step="quien">
+      <h1 tabindex="-1">¿Quién eres?</h1>
+      <div class="fn-opts" role="group" aria-label="Quién eres">
+        <button type="button" class="fn-opt" data-a="quien" data-v="creador">Creador de contenido</button>
+        <button type="button" class="fn-opt" data-a="quien" data-v="ugc">Creador UGC</button>
+        <button type="button" class="fn-opt" data-a="quien" data-v="negocio">Vendo por redes</button>
+        <button type="button" class="fn-opt" data-a="quien" data-v="personal">Es solo para mí</button>
+      </div>
+    </section>
+
+    <section class="fn-step" data-step="meta" hidden>
+      <h1 tabindex="-1">¿Qué quieres lograr?</h1>
+      <div class="fn-opts" role="group" aria-label="Qué quieres lograr">
+        <button type="button" class="fn-opt" data-a="meta" data-v="publicar">Publicar más videos</button>
+        <button type="button" class="fn-opt" data-a="meta" data-v="tiempo">Ahorrar tiempo</button>
+        <button type="button" class="fn-opt" data-a="meta" data-v="libertad">Tener más libertad</button>
+        <button type="button" class="fn-opt" data-a="meta" data-v="editor">Dejar de pagar un editor</button>
+      </div>
+    </section>
+
+    <section class="fn-step" data-step="videos" hidden>
+      <h1 tabindex="-1">¿Cuántos videos publicas?</h1>
+      <div class="fn-slider card">
+        <p class="fn-num"><b id="videos-v">4</b> <span id="videos-u">a la semana</span></p>
+        <input type="range" id="videos" min="0" max="11" step="1" aria-label="Videos a la semana">
+        <div class="fn-ends"><span>1 a la semana</span><span>10 o más al día</span></div>
+      </div>
+    </section>
+
+    <section class="fn-step" data-step="minutos" hidden>
+      <h1 tabindex="-1">¿Cuánto tardas editando?</h1>
+      <div class="fn-slider card">
+        <p class="fn-num"><b id="minutos-v">20</b> <span id="minutos-u">minutos por video</span></p>
+        <input type="range" id="minutos" min="0" max="10" step="1" aria-label="Minutos de edición por video">
+        <div class="fn-ends"><span>5 minutos</span><span>4 horas</span></div>
+      </div>
+    </section>
+
+    <section class="fn-step" data-step="resultado" hidden>
+      <h1 tabindex="-1">Pasas <span id="r-dia"></span> al día editando.</h1>
+      <p class="fn-sub" id="r-base"></p>
+      <div class="fn-result card">
+        <span class="k">Al mes</span>
+        <p><b id="r-mes"></b> <span>editando a mano</span></p>
+      </div>
+      <details class="fn-how">
+        <summary>Cómo lo calculamos</summary>
+        <p id="r-how"></p>
+      </details>
+    </section>
+
+    <section class="fn-step" data-step="suma" hidden>
+      <h1 tabindex="-1">Todo eso <span class="t">se acumula.</span></h1>
+      <div class="fn-chart" id="chart"></div>
+      <p class="fn-sub" id="r-year"></p>
+    </section>
+
+    <section class="fn-step fn-plans-step" data-step="planes" hidden>
+      <h1 tabindex="-1">Elige tu plan</h1>
+      <div class="seg-ctl small fn-period" role="group" aria-label="Periodo">
+        <button type="button" data-period="m" aria-pressed="true">Mensual</button>
+        <button type="button" data-period="y" aria-pressed="false">Anual <span class="save">Ahorra 33%</span></button>
+      </div>
+      <div class="plans" role="radiogroup" aria-label="Plan">
+        <button type="button" class="plan" role="radio" data-plan="starter" aria-checked="false">
+          <span class="radio"></span><span><span class="nm">Starter</span><br><span class="ed">100 ediciones al mes</span></span>
+          <span class="pr"><span data-m="19.99" data-y="159.99">$19.99</span> <small class="per">/mes</small></span>
+        </button>
+        <button type="button" class="plan" role="radio" data-plan="pro" aria-checked="true">
+          <span class="rec">Recomendado</span>
+          <span class="radio"></span><span><span class="nm">Pro</span><br><span class="ed">300 ediciones al mes</span></span>
+          <span class="pr"><span data-m="49.99" data-y="399.99">$49.99</span> <small class="per">/mes</small></span>
+        </button>
+        <button type="button" class="plan" role="radio" data-plan="ultimate" aria-checked="false">
+          <span class="radio"></span><span><span class="nm">Ultimate</span><br><span class="ed">Ediciones ilimitadas</span></span>
+          <span class="pr"><span data-m="89.99" data-y="719.99">$89.99</span> <small class="per">/mes</small></span>
+        </button>
+      </div>
+
+      <details class="fn-code" id="code-box">
+        <summary>¿Tienes un código?</summary>
+        <label for="code">Código de creador o descuento</label>
+        <div class="fn-code-row">
+          <input id="code" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="24" placeholder="TUCODIGO">
+          <button type="button" id="code-go">Aplicar</button>
+        </div>
+        <p class="fn-code-msg" id="code-msg" role="status"></p>
+      </details>
+
+      <div class="incl">
+        <p class="incl-h" id="incl-h">Pro incluye</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="m5 12 5 5 9-10"/></svg><span id="edits">300 ediciones con IA al mes</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="m5 12 5 5 9-10"/></svg>Cámara, editor manual y exportación</li>
+          <li data-x="overlap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="m5 12 5 5 9-10"/></svg>Audio superpuesto</li>
+          <li data-x="batch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="m5 12 5 5 9-10"/></svg>Ediciones en lote</li>
+        </ul>
+      </div>
+      <p class="terms">Corte IA es para iPhone. Requiere iOS 17 o posterior. Una prueba gratis por persona. Se renueva automáticamente hasta que canceles escribiendo a <a href="mailto:soporte@usacorteia.com">soporte@usacorteia.com</a>. Precios en USD.<br><a href="/terminos/">Términos</a> · <a href="/privacidad/">Privacidad</a></p>
+    </section>
+  </main>
+
+  <footer class="fn-foot" id="foot">
+    <p class="terms" id="pay-terms" hidden></p>
+    <button type="button" class="btn block" id="next">Siguiente</button>
+  </footer>
+</div>
+
+<dialog id="checkout" class="ck" aria-labelledby="ck-h">
+  <form method="dialog" id="ck-form" novalidate>
+    <button type="button" class="ck-x" id="ck-close" aria-label="Cerrar">×</button>
+    <h3 id="ck-h">Tu correo</h3>
+    <p class="muted" id="ck-sub"></p>
+    <label class="ck-field">Correo electrónico
+      <input type="email" id="ck-email" name="email" autocomplete="email" inputmode="email" placeholder="tu@correo.com" required maxlength="200">
+    </label>
+    <p class="ck-err" id="ck-err" role="alert" hidden></p>
+    <button class="btn" type="submit" id="ck-go">Continuar al pago</button>
+    <p class="terms">Pagas con tarjeta en Stripe, de forma segura. Al continuar aceptas los <a href="/terminos/">Términos</a>.</p>
+  </form>
+</dialog>
+
+<script>
+(() => {
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const CHECKOUT = "https://mxhuhxxqdzuzfbypngqp.supabase.co/functions/v1/web-checkout";
+  const STEPS = ["quien", "meta", "videos", "minutos", "resultado", "suma", "planes"];
+  const VIDEOS = [1, 2, 3, 4, 5, 7, 10, 14, 21, 28, 42, 70];
+  const MINUTES = [5, 10, 15, 20, 30, 45, 60, 90, 120, 180, 240];
+  const PLANS = {
+    starter: {name: "Starter", edits: "100 ediciones con IA al mes", overlap: false, batch: false, trial: false},
+    pro: {name: "Pro", edits: "300 ediciones con IA al mes", overlap: true, batch: true, trial: true},
+    ultimate: {name: "Ultimate", edits: "Ediciones con IA ilimitadas", overlap: true, batch: true, trial: false}
+  };
+  const ERR = {
+    email: "Revisa tu correo, parece que tiene un error.",
+    already_subscribed: "Este correo ya tiene un plan activo. Entra a la app con él para usarlo.",
+    default: "No pudimos abrir el pago. Inténtalo de nuevo en un momento."
+  };
+
+  const saved = (() => { try { return JSON.parse(sessionStorage.getItem("ci_funnel") || "{}"); } catch { return {}; } })();
+  const a = {quien: "", meta: "", videos: 3, minutos: 3, plan: "", period: "m", ...saved};
+  const save = () => { try { sessionStorage.setItem("ci_funnel", JSON.stringify(a)); } catch { /* sin almacenamiento */ } };
+  const startAt = new URLSearchParams(location.search).get("paso") === "planes" && a.minutos != null ? 6 : 0;
+  let step = startAt;
+
+  const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const weekly = () => VIDEOS[a.videos] * MINUTES[a.minutos];
+  const time = min => {
+    if (min < 60) return Math.max(1, Math.round(min)) + " min";
+    const h = min / 60;
+    return (h < 10 ? Math.round(h * 10) / 10 : Math.round(h).toLocaleString("en-US")) + " h";
+  };
+  const hours = min => {
+    const h = min / 60;
+    const n = h < 10 ? Math.round(h * 10) / 10 : Math.round(h).toLocaleString("en-US");
+    return n + (n === 1 ? " hora" : " horas");
+  };
+  const defaultPlan = () => VIDEOS[a.videos] * 52 / 12 > 300 ? "ultimate" : "pro";
+  const answers = () => ({quien: a.quien, meta: a.meta, videos_semana: VIDEOS[a.videos], minutos_video: MINUTES[a.minutos]});
+
+  $("#bars").setAttribute("aria-valuemax", STEPS.length);
+  $("#bars").innerHTML = STEPS.map(() => "<i></i>").join("");
+
+  function chart() {
+    const w = weekly(), vals = [w / 7, w, w * 52 / 12, w * 52], names = ["Día", "Semana", "Mes", "Año"];
+    const W = 340, H = 220, base = 170, top = 34, xs = [24, 120, 216, 312];
+    const ys = vals.map(v => base - (base - top) * Math.pow(v / vals[3], .6));
+    let d = `M${xs[0]} ${ys[0].toFixed(1)}`;
+    for (let i = 1; i < 4; i++) { const m = (xs[i - 1] + xs[i]) / 2; d += ` C${m} ${ys[i - 1].toFixed(1)} ${m} ${ys[i].toFixed(1)} ${xs[i]} ${ys[i].toFixed(1)}`; }
+    $("#chart").innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Tiempo editando: ${vals.map((v, i) => names[i] + " " + time(v)).join(", ")}">
+      <line x1="8" x2="${W - 8}" y1="${base}" y2="${base}" class="ax"/>
+      <path d="${d} L${xs[3]} ${base} L${xs[0]} ${base} Z" class="area"/>
+      <path d="${d}" class="ln" pathLength="1"/>
+      ${vals.map((v, i) => `<circle cx="${xs[i]}" cy="${ys[i].toFixed(1)}" r="5" class="pt"/>
+        <text x="${xs[i]}" y="${(ys[i] - 13).toFixed(1)}" text-anchor="${i === 3 ? "end" : "middle"}" class="val">${time(v)}</text>
+        <text x="${xs[i]}" y="${base + 24}" text-anchor="${i === 3 ? "end" : "middle"}" class="nm">${names[i]}</text>`).join("")}
+    </svg>`;
+  }
+
+  function sliders() {
+    const v = VIDEOS[a.videos], m = MINUTES[a.minutos];
+    $("#videos").value = a.videos; $("#minutos").value = a.minutos;
+    const perDay = v >= 14;
+    $("#videos-v").textContent = v === 70 ? "10+" : perDay ? v / 7 : v;
+    $("#videos-u").textContent = perDay ? "al día" : "a la semana";
+    $("#minutos-v").textContent = m >= 60 ? (m / 60) : m;
+    $("#minutos-u").textContent = (m >= 60 ? (m === 60 ? "hora" : "horas") : "minutos") + " por video";
+    [$("#videos"), $("#minutos")].forEach(el => el.style.setProperty("--p", (el.value / el.max * 100) + "%"));
+  }
+
+  function results() {
+    const w = weekly(), v = VIDEOS[a.videos], m = MINUTES[a.minutos];
+    const freq = v >= 14 ? `${v === 70 ? "10 o más" : v / 7} al día` : `${v} a la semana`;
+    $("#r-dia").textContent = time(w / 7);
+    $("#r-base").textContent = `Publicando ${freq} y editando ${time(m)} por video.`;
+    $("#r-mes").textContent = hours(w * 52 / 12);
+    $("#r-how").textContent = `${v} videos a la semana × ${m} minutos por video, durante 52 semanas al año.`;
+    $("#r-year").textContent = `Son ${hours(w * 52)} al año editando a mano.`;
+  }
+
+  function plans() {
+    if (!a.plan) a.plan = defaultPlan();
+    const p = PLANS[a.plan], y = a.period === "y";
+    $$(".plan").forEach(b => b.setAttribute("aria-checked", b.dataset.plan === a.plan));
+    $$("[data-period]").forEach(b => b.setAttribute("aria-pressed", b.dataset.period === a.period));
+    $$(".plan .pr > span").forEach(s => s.textContent = "$" + s.dataset[a.period]);
+    $$(".plan .per").forEach(s => s.textContent = y ? "/año" : "/mes");
+    $("#incl-h").textContent = p.name + " incluye";
+    $("#edits").textContent = p.edits;
+    $$(".incl li[data-x]").forEach(li => li.classList.toggle("off", !p[li.dataset.x]));
+    const price = $(`.plan[data-plan="${a.plan}"] .pr > span`).dataset[a.period];
+    const when = new Date(Date.now() + 3 * 864e5).toLocaleDateString("es", {day: "numeric", month: "long"});
+    $("#pay-terms").innerHTML = p.trial
+      ? `<b>$0 hoy.</b> Luego $${price} ${y ? "al año" : "al mes"} desde el ${when} si no cancelas.`
+      : `$${price} ${y ? "al año" : "al mes"}. Se renueva automáticamente.`;
+  }
+
+  function cta() {
+    const n = $("#next"), s = STEPS[step];
+    const choice = s === "quien" || s === "meta";
+    $("#foot").classList.toggle("hide", choice);
+    $("#pay-terms").hidden = s !== "planes";
+    n.disabled = false;
+    if (s === "resultado") n.textContent = "Ver mi año";
+    else if (s === "suma") n.textContent = "Elegir mi plan";
+    else if (s === "planes") {
+      if (!window.APP_RELEASED) { n.textContent = "Muy pronto en App Store"; n.disabled = true; }
+      else n.textContent = PLANS[a.plan].trial ? "Empezar 3 días gratis" : "Continuar con " + PLANS[a.plan].name;
+    } else n.textContent = "Siguiente";
+  }
+
+  function show(i, push = true) {
+    step = Math.max(0, Math.min(STEPS.length - 1, i));
+    const s = STEPS[step];
+    $$(".fn-step").forEach(el => { el.hidden = el.dataset.step !== s; });
+    $$("#bars i").forEach((b, k) => b.classList.toggle("on", k <= step));
+    $("#bars").setAttribute("aria-valuenow", step + 1);
+    $("#back").style.visibility = step ? "visible" : "hidden";
+    $$(".fn-opt").forEach(b => b.setAttribute("aria-pressed", a[b.dataset.a] === b.dataset.v));
+    sliders();
+    if (s === "resultado" || s === "suma") results();
+    if (s === "suma") chart();
+    if (s === "planes") plans();
+    cta();
+    scrollTo(0, 0);
+    $(`.fn-step[data-step="${s}"] h1`).focus({preventScroll: true});
+    if (push) history.pushState({step}, "");
+    CI.track("web_funnel_step", {step: s, step_index: step + 1, ...answers()});
+    if (s === "planes") CI.track("web_paywall_view", {default_plan: a.plan, ...answers()});
+    save();
+  }
+
+  $$(".fn-opt").forEach(b => b.addEventListener("click", () => {
+    a[b.dataset.a] = b.dataset.v;
+    $$(`.fn-opt[data-a="${b.dataset.a}"]`).forEach(o => o.setAttribute("aria-pressed", o === b));
+    save();
+    setTimeout(() => show(step + 1), still ? 0 : 220);
+  }));
+  ["videos", "minutos"].forEach(k => $("#" + k).addEventListener("input", e => {
+    a[k] = +e.target.value;
+    a.plan = "";
+    sliders();
+    save();
+  }));
+  $("#back").addEventListener("click", () => history.back());
+  addEventListener("popstate", e => show(e.state && Number.isInteger(e.state.step) ? e.state.step : 0, false));
+
+  $$(".plan").forEach(b => b.addEventListener("click", () => {
+    a.plan = b.dataset.plan; plans(); cta(); save();
+    CI.track("web_plan_selected", {plan: a.plan, period: a.period});
+  }));
+  $$("[data-period]").forEach(b => b.addEventListener("click", () => {
+    a.period = b.dataset.period; plans(); cta(); save();
+    CI.track("web_period_selected", {plan: a.plan, period: a.period});
+  }));
+
+  // Código de creador: viene en ?ref= o se escribe aquí. Stripe decide si además trae descuento.
+  const known = CI.ref();
+  if (known) { $("#code").value = known; $("#code-box").open = true; $("#code-msg").textContent = `Código ${known} guardado. Si trae descuento, lo verás al pagar.`; }
+  function applyCode() {
+    const c = CI.setRef($("#code").value);
+    $("#code").value = c;
+    $("#code-msg").textContent = c ? `Código ${c} guardado. Si trae descuento, lo verás al pagar.` : "Escribe un código válido.";
+    if (c) CI.track("web_code_applied");
+  }
+  $("#code-go").addEventListener("click", applyCode);
+  $("#code").addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); applyCode(); } });
+
+  const dlg = $("#checkout"), form = $("#ck-form"), email = $("#ck-email"), err = $("#ck-err"), go = $("#ck-go");
+  $("#next").addEventListener("click", () => {
+    if (STEPS[step] !== "planes") return show(step + 1);
+    if (!window.APP_RELEASED) return;
+    err.hidden = true;
+    $("#ck-sub").textContent = `Plan ${PLANS[a.plan].name} ${a.period === "m" ? "mensual" : "anual"}. Con este correo vas a entrar a la app; ahí se activa tu plan.`;
+    CI.track("web_checkout_open", {plan: a.plan, period: a.period});
+    dlg.showModal();
+    email.focus();
+  });
+  $("#ck-close").addEventListener("click", () => dlg.close());
+  dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+    if (!window.APP_RELEASED) return;
+    const value = email.value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value)) { err.textContent = ERR.email; err.hidden = false; return; }
+    go.disabled = true; go.textContent = "Abriendo el pago…"; err.hidden = true;
+    try {
+      const r = await fetch(CHECKOUT, {method: "POST", headers: {"content-type": "application/json"},
+        body: JSON.stringify({plan: a.plan, period: a.period === "m" ? "monthly" : "yearly", email: value, ref: CI.ref(), anon_id: CI.id(), from: "empezar"})});
+      const j = await r.json().catch(() => ({}));
+      if (r.ok && j.url) { CI.track("web_checkout_redirect", {plan: a.plan, period: a.period}); location.href = j.url; return; }
+      CI.track("web_checkout_error", {code: ERR[j.error] ? j.error : "default"});
+      err.textContent = ERR[j.error] || ERR.default; err.hidden = false;
+    } catch { CI.track("web_checkout_error", {code: "network"}); err.textContent = ERR.default; err.hidden = false; }
+    go.disabled = false; go.textContent = "Continuar al pago";
+  });
+
+  history.replaceState({step}, "");
+  show(step, false);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Corte IA · Editor de video con IA para iPhone</title>
+<meta name="description" content="Graba la toma desordenada. Corte IA quita las pausas, las tomas repetidas y las muletillas por ti. Edita menos, publica más.">
+<meta name="theme-color" content="#F7F7F8">
+<meta property="og:title" content="Corte IA · Graba la toma desordenada. Corte IA la deja limpia.">
+<meta property="og:description" content="Corte IA quita las pausas, las tomas repetidas y las muletillas por ti. Edita menos, publica más.">
+<meta property="og:image" content="https://usacorteia.com/img/og-icon.png">
+<meta property="og:url" content="https://usacorteia.com/">
+<meta name="twitter:card" content="summary">
+<meta name="apple-itunes-app" content="app-id=6836969545">
+<link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/img/icon.png">
+<link rel="apple-touch-icon" href="/img/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<script src="/launch.js"></script>
+<script src="/analytics.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+<!-- Logo 05 (C recortada). El anillo toma currentColor; el corte siempre es rosa. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="mark" viewBox="12 7 86 86"><path d="M72.98 27.02A32.5 32.5 0 1 0 72.98 72.98L63.79 63.79A19.5 19.5 0 1 1 63.79 36.21Z" fill="currentColor"/><path d="M88.15 33.75A32.5 32.5 0 0 1 88.15 66.25L76.89 59.75A19.5 19.5 0 0 0 76.89 40.25Z" fill="#E0457B"/></symbol>
+</svg>
+
+<div class="nav">
+  <div class="nav-in">
+    <a class="brand" href="/" aria-label="Corte IA, inicio"><svg class="mark" width="26" height="26" aria-hidden="true"><use href="#mark"/></svg><span>Corte <span class="ia">IA</span></span></a>
+    <nav class="links" aria-label="Secciones">
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#creadores" data-needs="creadores" hidden>Creadores</a>
+      <a href="#precios">Precios</a>
+      <a href="#preguntas">Preguntas</a>
+    </nav>
+    <a class="btn sm" href="https://apps.apple.com/app/id6836969545">Descargar</a>
+  </div>
+</div>
+
+<main id="main">
+  <!-- Hero -->
+  <header class="hero wrap" id="inicio" data-enter>
+    <div class="hero-copy">
+      <p class="pill"><svg width="14" height="14" aria-hidden="true"><use href="#mark"/></svg>Editor de video con IA para iPhone</p>
+      <h1>Graba la toma desordenada. <span class="t">Corte&nbsp;IA la deja limpia.</span></h1>
+      <p class="lead">Corte IA quita las pausas, las tomas repetidas y las muletillas por ti. Edita menos, publica más.</p>
+      <div class="cta-row">
+        <a class="btn lg" href="/empezar/" data-funnel>Empieza la prueba gratis</a>
+        <a class="txt" href="#como-funciona">Mira cómo funciona <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+      </div>
+      <p class="fine">iPhone · Requiere iOS 17 o posterior</p>
+      <!-- Reseñas del App Store: cuando haya reseñas reales, pon aquí la nota y las tarjetas y quita "hidden".
+      <p class="rating" hidden><span class="stars">★★★★★</span> <b>4.9</b> en el App Store</p>
+      <div class="reviews" hidden>
+        <figure class="review"><span class="stars">★★★★★</span><b>Título</b><p>Texto real de la reseña.</p><figcaption>usuario · App Store</figcaption></figure>
+      </div> -->
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <div class="glow"></div>
+      <div class="iphone"><img src="/img/app-editor.jpg" alt="" width="460" height="1000"></div>
+      <div class="chip-dark"><span class="k">Toma cruda</span><span class="v"><s>1:10</s> → 0:17</span></div>
+    </div>
+  </header>
+
+  <!-- Antes y después -->
+  <!-- Antes y después: aparece solo cuando existe antes.mp4 o despues.mp4 en /video/. -->
+  <section class="tour" id="demo" data-auto-show hidden>
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Cómo funciona <span class="t">Corte&nbsp;IA</span></h2>
+        <p>Izquierda: tu toma cruda, con repeticiones y todo. Derecha: el corte que te devuelve Corte IA.</p>
+      </div>
+      <div class="ba">
+        <figure class="card"><figcaption><span class="tag">Antes</span></figcaption><div class="vslot" data-video="antes" style="--r:9/16"><span class="vtag">antes.mp4 · 9:16</span></div></figure>
+        <div class="ba-stat">
+          <span class="k">Toma cruda</span>
+          <span class="from">1:10</span>
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <span class="to">0:17</span>
+          <span class="k">con Corte IA</span>
+        </div>
+        <figure class="card"><figcaption><span class="tag on">Después</span></figcaption><div class="vslot" data-video="despues" style="--r:9/16"><span class="vtag">despues.mp4 · 9:16</span></div></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cómo funciona -->
+  <section id="como-funciona">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Cómo funciona</p>
+        <h2>Del clip crudo al video listo, <span class="t">en tres pasos</span></h2>
+        <p>Graba una toma rápida o elige una de tu carrete. Corte IA hace el resto.</p>
+      </div>
+      <div class="steps">
+        <article class="step card">
+          <span class="num">01</span>
+          <h3>Quita silencios, tomas repetidas y muletillas</h3>
+          <div class="iphone sm"><img src="/img/app-editor.jpg" alt="Corte listo en Corte IA: un clip de 1:10 queda en 0:17" loading="lazy" width="460" height="1000"></div>
+        </article>
+        <article class="step card">
+          <span class="num">02</span>
+          <h3>Pon hasta 10 videos en cola a la vez</h3>
+          <div class="iphone sm"><img src="/img/app-batch.jpg" alt="Pantalla Lote de Corte IA: corta hasta 10 videos a la vez" loading="lazy" width="460" height="1000"></div>
+        </article>
+        <article class="step card">
+          <span class="num">03</span>
+          <h3>Exporta en 1080p sin marca de agua</h3>
+          <div class="iphone sm"><div class="vslot fill" data-video="exportar" style="--r:460/1000"><span class="export-ph" aria-hidden="true"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M5 21h14"/></svg><b>1080p</b><span>Sin marca de agua</span></span></div></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Funciones -->
+  <section id="funciones">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Funciones</p>
+        <h2>Herramientas que <span class="t">editan por ti</span></h2>
+        <p>La parte lenta de editar, hecha por ti. Un editor de verdad para todo lo demás.</p>
+      </div>
+      <div class="fx">
+        <div class="feat card hero-feat">
+          <div class="glow" aria-hidden="true"></div>
+          <div class="ic"><svg width="22" height="22" aria-hidden="true"><use href="#mark"/></svg></div>
+          <h3>Corte automático</h3><p>Tu primer corte, hecho por ti. Fuera las tomas repetidas, los rodeos y el aire muerto.</p>
+        </div>
+        <div class="feat card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h3M18 12h3M8 8v8M12 5v14M16 8v8"/></svg></div><h3>Quita el aire muerto</h3><p>Recorta las pausas largas para que tu video no pierda el ritmo.</p></div>
+        <div class="feat card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h10M4 17h7"/><path d="m16 15 2 2 4-4"/></svg></div><h3>Elige la mejor toma</h3><p>Si dices la misma frase varias veces, se queda con la que mejor te salió.</p></div>
+        <div class="feat card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M7 13h4M13 13h4M7 16h10"/></svg></div><h3>Subtítulos automáticos</h3><p>Subtítulos que se escriben solos. Cambia las palabras, el estilo o muévelos.</p></div>
+        <div class="feat card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 14h18M9 14v6M15 14v6"/></svg></div><h3>Un editor de verdad</h3><p>Recorta, divide y reordena en una línea de tiempo completa. Añade texto, subtítulos, superposiciones y audio.</p></div>
+        <div class="feat card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3 3 8l9 5 9-5-9-5Z"/><path d="m3 13 9 5 9-5"/></svg></div><h3>Ediciones en lote</h3><p>Pon hasta 10 videos en cola. Te avisamos cuando tus cortes estén listos.</p></div>
+        <div class="feat card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M5 21h14"/></svg></div><h3>Sin marca de agua <span class="badge">1080p</span></h3><p>Guarda en 1080p sin la marca de Corte IA.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonios: oculto hasta tener reseñas reales del App Store.
+  <section id="momentos" hidden>
+    <div class="wrap">
+      <div class="sec-head"><h2>«Me ahorra <span class="t">horas</span>»</h2><p>4.9 ★★★★★ · N valoraciones en el App Store</p></div>
+      <div class="reviews"></div>
+    </div>
+  </section> -->
+
+  <!-- Creadores: aparece solo cuando existe al menos uno de estos videos en /video/. -->
+  <section id="creadores" data-auto-show hidden>
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Videos reales, <span class="t">cortados con Corte&nbsp;IA</span></h2>
+        <p>Publicados por creadores. Toca uno para oír el sonido.</p>
+      </div>
+      <div class="cap-stage">
+        <figure class="capv"><div class="vslot" data-video="creador-1" data-sound style="--r:9/16"><span class="vtag">creador-1.mp4 · 9:16</span></div></figure>
+        <figure class="capv"><div class="vslot" data-video="creador-2" data-sound style="--r:9/16"><span class="vtag">creador-2.mp4 · 9:16</span></div></figure>
+        <figure class="capv"><div class="vslot" data-video="creador-3" data-sound style="--r:9/16"><span class="vtag">creador-3.mp4 · 9:16</span></div></figure>
+        <figure class="capv"><div class="vslot" data-video="creador-4" data-sound style="--r:9/16"><span class="vtag">creador-4.mp4 · 9:16</span></div></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Precios -->
+  <section id="precios">
+    <div class="wrap price-grid">
+      <div class="price-copy">
+        <p class="eyebrow">Precios</p>
+        <h2>Prueba&nbsp;Corte&nbsp;IA <span class="t">gratis</span></h2>
+        <p>Elige el plan que va con tus metas de contenido.</p>
+        <div class="incl">
+          <p class="incl-h" id="incl-h">Pro incluye</p>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="m5 12 5 5 9-10"/></svg><span id="edits">300 ediciones con IA al mes</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="m5 12 5 5 9-10"/></svg>Cámara, editor manual y exportación</li>
+            <li data-x="overlap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="m5 12 5 5 9-10"/></svg>Audio superpuesto</li>
+            <li data-x="batch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="m5 12 5 5 9-10"/></svg>Ediciones en lote</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pricing card">
+        <p class="q">¿Cada cuánto publicas?</p>
+        <div class="seg-ctl" role="group" aria-label="Cada cuánto publicas">
+          <button type="button" data-freq="starter" aria-pressed="false">Unas veces por semana</button>
+          <button type="button" data-freq="pro" aria-pressed="true">Cada día</button>
+          <button type="button" data-freq="ultimate" aria-pressed="false">Mucho, o en equipo</button>
+        </div>
+        <div class="seg-ctl small" role="group" aria-label="Periodo">
+          <button type="button" data-period="m" aria-pressed="true">Mensual</button>
+          <button type="button" data-period="y" aria-pressed="false">Anual <span class="save">Ahorra 33%</span></button>
+        </div>
+        <div class="plans" role="radiogroup" aria-label="Plan">
+          <button type="button" class="plan" role="radio" data-plan="starter" aria-checked="false">
+            <span class="radio"></span><span><span class="nm">Starter</span><br><span class="ed">Para publicar unas veces por semana.</span></span>
+            <span class="pr"><span data-m="19.99" data-y="159.99">$19.99</span> <small class="per">/mes</small></span>
+          </button>
+          <button type="button" class="plan" role="radio" data-plan="pro" aria-checked="true">
+            <span class="rec">Recomendado</span>
+            <span class="radio"></span><span><span class="nm">Pro</span><br><span class="ed">Para publicar todos los días.</span></span>
+            <span class="pr"><span data-m="49.99" data-y="399.99">$49.99</span> <small class="per">/mes</small></span>
+          </button>
+          <button type="button" class="plan" role="radio" data-plan="ultimate" aria-checked="false">
+            <span class="radio"></span><span><span class="nm">Ultimate</span><br><span class="ed">Para equipos y negocios con mucho volumen.</span></span>
+            <span class="pr"><span data-m="89.99" data-y="719.99">$89.99</span> <small class="per">/mes</small></span>
+          </button>
+        </div>
+        <a class="btn block" id="buy" href="https://apps.apple.com/app/id6836969545">Empezar 3 días gratis</a>
+        <p class="terms" id="terms"><b>$0 hoy.</b> Luego $49.99 al mes si no cancelas.</p>
+        <p class="terms" id="store-alt" hidden>¿Prefieres pagar con tu cuenta de Apple? <a href="https://apps.apple.com/app/id6836969545">Suscríbete desde la app</a>.</p>
+        <p class="terms">Corte IA es para iPhone. Requiere iOS 17 o posterior.<br>Una prueba gratis por cuenta, cancela cuando quieras. Precios en USD; en el App Store verás el de tu país. Se renueva automáticamente. Si pagas en la app, cancela en Ajustes al menos 24 horas antes de que termine el periodo.</p>
+        <p class="terms"><a href="/terminos/">Términos</a> · <a href="/privacidad/">Privacidad</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Preguntas -->
+  <section id="preguntas">
+    <div class="wrap faq-grid">
+      <div class="faq-head">
+        <h2>¿Tienes alguna <span class="t">pregunta?</span></h2>
+        <p>¿Sigues con dudas? <a class="pink" href="mailto:soporte@usacorteia.com">Escríbenos</a></p>
+      </div>
+      <div class="faq card">
+        <details><summary>¿Cómo funciona la prueba gratis?</summary><p>Todos empiezan con 3 cortes gratis. El plan Pro trae además 3 días de prueba: no pagas nada hoy y, si no cancelas antes de que termine, se cobra el plan que elegiste. Una prueba por persona.</p></details>
+        <details><summary>¿Corte IA puede reemplazar a mi editor?</summary><p>Para videos en los que hablas a cámara, hace el primer corte por ti: quita las pausas, las tomas repetidas y las muletillas en minutos. Si quieres darle el último toque, tienes un editor completo dentro de la app.</p></details>
+        <details><summary>¿Cómo cancelo o cambio de plan?</summary><p>Si pagaste aquí en la web, escríbenos a <a href="mailto:soporte@usacorteia.com">soporte@usacorteia.com</a> desde tu correo y lo cancelamos ese mismo día; sigues con tu plan hasta el final del periodo pagado. Si pagaste en la app, desde Ajustes de tu iPhone → tu nombre → Suscripciones → Corte IA, al menos 24 horas antes de que se renueve.</p></details>
+        <details><summary>¿Qué plan elijo?</summary><p>Starter cuesta $19.99 al mes con 100 ediciones con IA, para publicar unas veces por semana. Pro cuesta $49.99 al mes con 300 ediciones con IA, para publicar todos los días. Ultimate cuesta $89.99 al mes con ediciones con IA ilimitadas, para equipos y negocios con mucho volumen.</p></details>
+        <details><summary>¿Qué edita exactamente Corte IA?</summary><p>Los silencios, las tomas repetidas, las muletillas y los tropiezos entre tomas. Tú hablas; Corte IA encuentra las partes que vale la pena conservar y corta el resto.</p></details>
+        <details><summary>¿Puedo ajustar o deshacer un corte?</summary><p>Cada corte se abre en un editor de verdad dentro de la app, donde puedes recortar, dividir y reordenar en una línea de tiempo completa cuando quieras.</p></details>
+        <details><summary>¿En qué calidad exporta?</summary><p>En 1080p, y sin marca de agua.</p></details>
+        <details><summary>¿Qué tan largo puede ser mi video?</summary><p>Hasta 20 minutos por video.</p></details>
+        <details><summary>¿Mis cortes se quedan en la app?</summary><p>Cada corte se guarda en la pestaña Cortes, para que lo vuelvas a ver y lo exportes cuando quieras.</p></details>
+        <details><summary>¿Corte IA está en Android?</summary><p>Todavía no. Por ahora Corte IA es solo para iPhone.</p></details>
+        <details><summary>¿Ofrecen reembolsos?</summary><p>Los cobros los gestiona Apple. Puedes pedir un reembolso en <a class="pink" href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>. Los detalles están en los <a class="pink" href="/terminos/">términos</a>.</p></details>
+      </div>
+    </div>
+  </section>
+  <dialog id="checkout" class="ck" aria-labelledby="ck-h">
+    <form method="dialog" id="ck-form" novalidate>
+      <button type="button" class="ck-x" id="ck-close" aria-label="Cerrar">×</button>
+      <h3 id="ck-h">Tu correo</h3>
+      <p class="muted" id="ck-sub">Con este correo vas a entrar a la app. Ahí se activa tu plan.</p>
+      <label class="ck-field"><span class="sr">Correo electrónico</span>
+        <input type="email" id="ck-email" name="email" autocomplete="email" inputmode="email" placeholder="tu@correo.com" required maxlength="200"></label>
+      <p class="ck-err" id="ck-err" role="alert" hidden></p>
+      <button class="btn" type="submit" id="ck-go">Continuar al pago</button>
+      <p class="terms">Pagas con tarjeta en Stripe, de forma segura. Al continuar aceptas los <a href="/terminos/">Términos</a>.</p>
+    </form>
+  </dialog>
+
+  <!-- Cierre -->
+  <section class="close" id="empezar">
+    <div class="wrap">
+    <div class="final">
+        <div class="glow a" aria-hidden="true"></div><div class="glow b" aria-hidden="true"></div>
+        <img class="app" src="/img/icon.png" alt="" width="84" height="84">
+        <h2>Deja de editar. <span class="t">Empieza a publicar.</span></h2>
+        <p>Tú grabas. Corte IA quita las pausas, las tomas repetidas y las muletillas. Tú publicas.</p>
+        <a class="btn lg light" href="/empezar/" data-funnel>Prueba Corte IA gratis</a>
+        <p class="fine">3 días gratis con Pro · $0 hoy · iPhone</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="cols">
+      <div class="col-brand">
+        <a class="brand" href="/"><svg class="mark" width="26" height="26" aria-hidden="true"><use href="#mark"/></svg><span>Corte <span class="ia">IA</span></span></a>
+        <p>Edición de video con IA que quita los silencios, las tomas repetidas y las muletillas por ti.</p>
+      </div>
+      <div><h3>Producto</h3><ul><li><a href="#como-funciona">Cómo funciona</a></li><li data-needs="creadores" hidden><a href="#creadores">Creadores</a></li><li><a href="#precios">Precios</a></li><li><a href="https://apps.apple.com/app/id6836969545">Descargar Corte IA</a></li></ul></div>
+      <div><h3>Contacto</h3><ul><li><a href="mailto:soporte@usacorteia.com">Ayuda y soporte</a></li><li><a href="mailto:soporte@usacorteia.com">Escríbenos</a></li></ul></div>
+      <div><h3>Políticas</h3><ul><li><a href="/terminos/">Términos de uso</a></li><li><a href="/privacidad/">Política de privacidad</a></li></ul></div>
+    </div>
+    <p class="copy">© 2026 Oliveira Tech Group LLC · usacorteia.com</p>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const plans = {
+    starter: {name: "Starter", edits: "100 ediciones con IA al mes", overlap: false, batch: false, trial: false},
+    pro: {name: "Pro", edits: "300 ediciones con IA al mes", overlap: true, batch: true, trial: true},
+    ultimate: {name: "Ultimate", edits: "Ediciones con IA ilimitadas", overlap: true, batch: true, trial: false}
+  };
+  let plan = "pro", period = "m";
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+
+  function render() {
+    $$(".plan").forEach(b => b.setAttribute("aria-checked", b.dataset.plan === plan));
+    $$("[data-freq]").forEach(b => b.setAttribute("aria-pressed", b.dataset.freq === plan));
+    $$("[data-period]").forEach(b => b.setAttribute("aria-pressed", b.dataset.period === period));
+    $$(".plan .pr > span").forEach(s => s.textContent = "$" + s.dataset[period]);
+    $$(".plan .per").forEach(s => s.textContent = period === "m" ? "/mes" : "/año");
+    const p = plans[plan];
+    $("#incl-h").textContent = p.name + " incluye";
+    $("#edits").textContent = p.edits;
+    $$(".incl li[data-x]").forEach(li => li.classList.toggle("off", !p[li.dataset.x]));
+    const price = $(`.plan[data-plan="${plan}"] .pr > span`).dataset[period];
+    const per = period === "m" ? "al mes" : "al año";
+    $("#buy").textContent = !window.APP_RELEASED ? "Muy pronto en App Store" : p.trial ? "Empezar 3 días gratis" : "Elegir " + p.name;
+    $("#terms").innerHTML = p.trial ? `<b>$0 hoy.</b> Luego $${price} ${per} si no cancelas.` : `$${price} ${per}. Se renueva automáticamente.`;
+  }
+  $$(".plan").forEach(b => b.addEventListener("click", () => { plan = b.dataset.plan; render(); }));
+  $$("[data-freq]").forEach(b => b.addEventListener("click", () => { plan = b.dataset.freq; render(); }));
+  $$("[data-period]").forEach(b => b.addEventListener("click", () => { period = b.dataset.period; render(); }));
+  render();
+
+  // Pago web con Stripe. CHECKOUT vacío = el botón sigue llevando al App Store.
+  const CHECKOUT = "https://mxhuhxxqdzuzfbypngqp.supabase.co/functions/v1/web-checkout";
+  const dlg = $("#checkout"), form = $("#ck-form"), email = $("#ck-email"), err = $("#ck-err"), go = $("#ck-go");
+  const ERR = {
+    email: "Revisa tu correo, parece que tiene un error.",
+    already_subscribed: "Este correo ya tiene un plan activo. Entra a la app con él para usarlo.",
+    default: "No pudimos abrir el pago. Inténtalo de nuevo en un momento."
+  };
+  if (window.APP_RELEASED && CHECKOUT && dlg && typeof dlg.showModal === "function") {
+    $("#store-alt").hidden = false;
+    $("#buy").addEventListener("click", e => {
+      e.preventDefault();
+      err.hidden = true;
+      $("#ck-sub").textContent = `Plan ${plans[plan].name} ${period === "m" ? "mensual" : "anual"}. Con este correo vas a entrar a la app; ahí se activa tu plan.`;
+      dlg.showModal();
+      email.focus();
+    });
+    $("#ck-close").addEventListener("click", () => dlg.close());
+    dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
+    form.addEventListener("submit", async e => {
+      e.preventDefault();
+      const value = email.value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value)) { err.textContent = ERR.email; err.hidden = false; return; }
+      go.disabled = true; go.textContent = "Abriendo el pago…"; err.hidden = true;
+      try {
+        const r = await fetch(CHECKOUT, {method: "POST", headers: {"content-type": "application/json"},
+          body: JSON.stringify({plan, period: period === "m" ? "monthly" : "yearly", email: value, ref: CI.ref(), anon_id: CI.id()})});
+        const j = await r.json().catch(() => ({}));
+        if (r.ok && j.url) { location.href = j.url; return; }
+        err.textContent = ERR[j.error] || ERR.default; err.hidden = false;
+      } catch { err.textContent = ERR.default; err.hidden = false; }
+      go.disabled = false; go.textContent = "Continuar al pago";
+    });
+  }
+
+  // Barra de navegación: borde fino en cuanto hay scroll.
+  const nav = $(".nav");
+  const onScroll = () => nav.classList.toggle("scrolled", scrollY > 8);
+  addEventListener("scroll", onScroll, {passive: true}); onScroll();
+
+  const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Videos: cada espacio busca /video/<nombre>.mp4 (y /video/<nombre>.jpg como portada).
+  // Si el archivo existe se reproduce en bucle y sin sonido; si no, se queda el espacio vacío
+  // (o la captura de respaldo, si el espacio tiene una).
+  const vio = "IntersectionObserver" in window ? new IntersectionObserver(es => es.forEach(e => {
+    const v = e.target.querySelector("video");
+    if (e.isIntersecting) { if (!still) v.play().catch(() => {}); } else v.pause();
+  }), {threshold: .25}) : null;
+  $$(".vslot[data-video]").forEach(slot => {
+    const name = slot.dataset.video, v = document.createElement("video");
+    v.muted = true; v.loop = true; v.playsInline = true; v.preload = "metadata";
+    v.setAttribute("muted", ""); v.setAttribute("playsinline", "");
+    v.addEventListener("loadeddata", () => {
+      slot.classList.add("on");
+      // Una sección marcada data-auto-show aparece en cuanto tiene un video.
+      const sec = slot.closest("[data-auto-show]");
+      if (sec && sec.hidden) {
+        sec.hidden = false;
+        $$(`[data-needs="${sec.id}"]`).forEach(el => el.hidden = false);
+      }
+      if (vio) vio.observe(slot); else if (!still) v.play().catch(() => {});
+    }, {once: true});
+    if (slot.hasAttribute("data-sound")) slot.addEventListener("click", () => { v.muted = !v.muted; slot.classList.toggle("sound", !v.muted); });
+    v.poster = `/video/${name}.jpg`;
+    v.src = `/video/${name}.mp4`;
+    slot.appendChild(v);
+  });
+})();
+</script>
+</body>
+</html>
